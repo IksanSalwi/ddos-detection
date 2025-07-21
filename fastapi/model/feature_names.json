@@ -1,0 +1,24 @@
+{
+    "selected_features": [
+        "pktcount",
+        "byteperflow",
+        "tot_kbps",
+        "rx_kbps",
+        "flows",
+        "bytecount",
+        "Protocol",
+        "tot_dur"
+    ],
+    "encoded_features": [
+        "pktcount",
+        "byteperflow",
+        "tot_kbps",
+        "rx_kbps",
+        "flows",
+        "bytecount",
+        "tot_dur",
+        "Protocol_ICMP",
+        "Protocol_TCP",
+        "Protocol_UDP"
+    ]
+}

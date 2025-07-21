@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DDoS-Resistant Load Balancer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>DDoS-Resistant Load Balancer</h1>
+        
+        <div class="dashboard">
+            <div class="servers">
+                <h2>Backend Servers</h2>
+                <div id="server-status">
+                    <div class="server" id="server1">Server 1: <span class="status">Loading...</span></div>
+                    <div class="server" id="server2">Server 2: <span class="status">Loading...</span></div>
+                    <div class="server" id="server3">Server 3: <span class="status">Loading...</span></div>
+                </div>
+            </div>
+            
+            <div class="stats">
+                <h2>Real-time Statistics</h2>
+                <div class="stat-card">
+                    <h3>Requests</h3>
+                    <div id="request-count">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>DDoS Blocks</h3>
+                    <div id="ddos-blocks">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Current Load</h3>
+                    <div id="current-load">0%</div>
+                </div>
+            </div>
+            
+            <div class="traffic">
+                <h2>Traffic Monitoring</h2>
+                <canvas id="traffic-chart" width="400" height="200"></canvas>
+            </div>
+        </div>
+        
+        <div class="test-area">
+            <h2>Test Load Balancer</h2>
+            <button id="test-btn">Send Test Request</button>
+            <div id="test-result"></div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

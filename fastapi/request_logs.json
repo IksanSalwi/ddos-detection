@@ -1,0 +1,4 @@
+{"pktcount":10,"byteperflow":1000,"tot-kbps":500.0,"rx-kbps":300.0,"flows":5,"bytecount":5000,"tot-dur":10.0,"protocol":"HTTP"}
+{"pktcount":10,"byteperflow":1000,"tot-kbps":500.0,"rx-kbps":300.0,"flows":5,"bytecount":5000,"tot-dur":10.0,"protocol":"HTTP"}
+{"pktcount":10,"byteperflow":1000,"tot-kbps":500.0,"rx-kbps":300.0,"flows":5,"bytecount":5000,"tot-dur":10.0,"protocol":"HTTP"}
+{ "pktcount": 10, "byteperflow": 1000, "tot-kbps": 500.0, "rx-kbps": 300.0, "flows": 5, "bytecount": 5000, "tot-dur": 10.0, "protocol": "HTTP" }

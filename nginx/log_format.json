@@ -1,0 +1,80 @@
+{
+    "log_format": {
+        "name": "main_json",
+        "format": {
+            "time": "$time_iso8601",
+            "remote_addr": "$remote_addr",
+            "x_forwarded_for": "$http_x_forwarded_for",
+            "request_method": "$request_method",
+            "request_uri": "$request_uri",
+            "status": "$status",
+            "bytes_sent": "$bytes_sent",
+            "body_bytes_sent": "$body_bytes_sent",
+            "request_time": "$request_time",
+            "upstream_addr": "$upstream_addr",
+            "upstream_response_time": "$upstream_response_time",
+            "upstream_status": "$upstream_status",
+            "protocol": "$server_protocol",
+            "scheme": "$scheme",
+            "host": "$host",
+            "http_referer": "$http_referer",
+            "http_user_agent": "$http_user_agent",
+            "http_accept_language": "$http_accept_language",
+            "connection": "$connection",
+            "connection_requests": "$connection_requests",
+            "request_length": "$request_length",
+            "server_name": "$server_name",
+            "server_port": "$server_port",
+            "ssl_protocol": "$ssl_protocol",
+            "ssl_cipher": "$ssl_cipher",
+            "rate_limited": "$limit_req_status",
+            "connection_limited": "$limit_conn_status",
+            "ddos_score": "$http_ddos_score",
+            "is_malicious": "$http_is_malicious",
+            "geoip_country_code": "$geoip_country_code",
+            "geoip_country_name": "$geoip_country_name",
+            "geoip_city": "$geoip_city",
+            "geoip_latitude": "$geoip_latitude",
+            "geoip_longitude": "$geoip_longitude",
+            "request_id": "$request_id",
+            "nginx_version": "$nginx_version",
+            "msec": "$msec",
+            "pipe": "$pipe"
+        },
+        "additional_fields": {
+            "tags": ["ddos_protection", "load_balancer"],
+            "environment": "production",
+            "service": "nginx_lb"
+        },
+        "timestamp_format": "ISO8601",
+        "type": "application/json",
+        "escape": "json"
+    },
+    "sampling_rules": {
+        "normal_traffic": 0.1,
+        "malicious_traffic": 1.0,
+        "error_responses": 1.0
+    },
+    "retention_policy": {
+        "general_logs": "30d",
+        "security_logs": "90d",
+        "compression": "gzip",
+        "rotation": "daily"
+    },
+    "ml_features": {
+        "important_fields": [
+            "request_time",
+            "request_length",
+            "body_bytes_sent",
+            "upstream_response_time",
+            "ddos_score",
+            "is_malicious",
+            "rate_limited",
+            "connection_limited"
+        ],
+        "derived_features": {
+            "request_per_second": "$request_time/$connection_requests",
+            "bytes_per_second": "$body_bytes_sent/$request_time"
+        }
+    }
+}

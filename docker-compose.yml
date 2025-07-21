@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  nginx:
+    build: ./nginx
+    ports:
+      - "8080:80"
+      - "8082:81"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/log_format.json:/etc/nginx/log_format.json
+      - ./nginx/logs:/var/log/nginx
+    depends_on:
+      - backend1
+      - backend2
+      - backend3
+      - fastapi
+    networks:
+      - ddos-net
+
+  fastapi:
+    build: ./fastapi
+    env_file:
+      - ./fastapi/.env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./fastapi:/app
+    networks:
+      - ddos-net
+
+  backend1:
+    build: ./backend1
+    networks:
+      - ddos-net
+
+  backend2:
+    build: ./backend2
+    networks:
+      - ddos-net
+
+  backend3:
+    build: ./backend3
+    networks:
+      - ddos-net
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8081:80"
+    networks:
+      - ddos-net
+
+networks:
+  ddos-net:
+    driver: bridge
