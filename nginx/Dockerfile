@@ -1,7 +1,4 @@
-FROM nginx:1.25-alpine
-
-# Install required modules
-RUN apk add --no-cache nginx-mod-http-geoip
+FROM mirror.gcr.io/nginx:1.25-alpine
 
 # Copy custom configuration
 COPY nginx.conf /etc/nginx/nginx.conf

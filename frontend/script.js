@@ -23,14 +23,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update server status
     function updateServerStatus() {
-        fetch('http://localhost:8080/detect')
+        fetch('http://localhost:8080/')
             .then(response => {
-                const serverId = response.headers.get('x-backend-server');
+                const serverId = response.headers.get('X-Backend-Server');
                 if (serverId) {
                     document.querySelectorAll('.server').forEach(el => {
                         el.classList.remove('active');
                     });
-                    document.getElementById(serverId).classList.add('active');
+                    
+                    let serverNumber = '';
+                    if (serverId.includes('backend1')) {
+                        serverNumber = 'server1';
+                    } else if (serverId.includes('backend2')) {
+                        serverNumber = 'server2';
+                    } else if (serverId.includes('backend3')) {
+                        serverNumber = 'server3';
+                    }
+
+                    if(serverNumber) {
+                        document.getElementById(serverNumber).classList.add('active');
+                    }
+
+                    const backendServerInfo = document.getElementById('backend-server-info');
+                    backendServerInfo.innerHTML = `<p>Request served by: ${serverId}</p>`;
                 }
             })
             .catch(error => console.error('Error fetching server status:', error));
@@ -54,11 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Test button
     document.getElementById('test-btn').addEventListener('click', () => {
-        fetch('http://localhost:8080/detect')
+        fetch('http://localhost:8080/')
             .then(response => {
-                const serverId = response.headers.get('x-backend-server');
-                const ddosScore = response.headers.get('ddos-score');
-                const isMalicious = response.headers.get('is-malicious');
+                const serverId = response.headers.get('X-Backend-Server');
+                const ddosScore = response.headers.get('X-DDoS-Score');
+                const isMalicious = response.headers.get('X-Is-Malicious');
                 
                 const resultDiv = document.getElementById('test-result');
                 resultDiv.innerHTML = `
